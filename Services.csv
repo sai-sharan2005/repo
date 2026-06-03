@@ -1,0 +1,142 @@
+Category,Service,Variant,Price
+Eyebrow Design,Eyebrow shaping,,40
+Eyebrow Design,Eyebrow Tinting,,50
+Eyebrow Design,Complete eyebrow design,,80
+Threading,Upperlip,,40
+Threading,Lowerlip,,20
+Threading,Chin,,40
+Threading,Sides,,50
+Threading,Full face threading,,150
+Threading,Neck,,50
+Waxing : Face,Upperlip,,40
+Waxing : Face,Lower lip,,20
+Waxing : Face,Chin,,40
+Waxing : Face,Sides,,50
+Waxing : Face,Neck,,50
+Waxing : Body,Half arm,Regular,140
+Waxing : Body,Half arm,Special,200
+Waxing : Body,Full arm,Regular,220
+Waxing : Body,Full arm,Special,300
+Waxing : Body,Underarm,Regular,50
+Waxing : Body,Underarm,Special,75
+Waxing : Body,Half leg,Regular,180
+Waxing : Body,Half leg,Special,300
+Waxing : Body,Full legs,Regular,350
+Waxing : Body,Full legs,Special,450
+Waxing : Body,Bikini,Regular,200
+Waxing : Body,Bikini,Special,300
+Waxing : Body,Brazilian,Regular,500
+Waxing : Body,Brazilian,Special,700
+Waxing : Body,Back,Regular,150
+Waxing : Body,Back,Special,250
+Waxing : Body,Abdomen,Regular,100
+Waxing : Body,Abdomen,Special,200
+Waxing : Body,Full body,Regular,1500
+Waxing : Body,Full body,Special,2500
+threading,Full face,,150
+Bleach :,Full face and Neck,,120
+Bleach :,Upperlip and chin,,100
+Bleach :,Under arm,,70
+Bleach :,Half arm,,170
+Bleach :,Full arm,,200
+Bleach :,Full leg,,400
+Bleach :,Upper back,,100
+Bleach :,Complete back,,200
+Bleach :,Feet,,100
+Bleach :,Full Body,,1500
+De Tan :,Full face and Neck,,180
+De Tan :,Upperlip and chin,,100
+De Tan :,Under arm,,100
+De Tan :,Half arm,,200
+De Tan :,Full arm,,400
+De Tan :,Full leg,,800
+De Tan :,Upper back,,150
+De Tan :,Complete back,,300
+De Tan :,Feet,,100
+De Tan :,Full Body,,2000
+Express Facial cleanups :,Herbal cleanup,,300
+Express Facial cleanups :,Fruit cleanup,,350
+Express Facial cleanups :,Pearl cleanup,,400
+Exotic Facials:,Herbal Facial,,600
+Exotic Facials:,Chocolate Facial,,600
+Exotic Facials:,Fruit Facial,,700
+Exotic Facials:,Pearl Facial,,800
+Exotic Facials:,Whightning and Brightning Facial,,800
+Exotic Facials:,Gold Facial,,800
+Exotic Facials:,Wine Facial,,800
+Exotic Facials:,Ayurvedic Facial,,800
+Exotic Facials:,Aroma Facial,,800
+Exotic Facials:,Skin tightening,,120
+Exotic Facials:,Skin whitening,,120
+Exotic Facials:,Anti Tan,,110
+Exotic Facials:,Special Gold Mask,,150
+Advanced facials,Brightning and colour improvement facial,,1200
+Advanced facials,24 carat gold facial,,1200
+Advanced facials,Acne Facial,,1000
+Advanced facials,Skin tightening and anti wrinkle facial,,1300
+Advanced facials,Pigmentation facial,,1300
+spa manicures and pedicures,Fruit manicure,,250
+spa manicures and pedicures,Fruit pedicure,,350
+spa manicures and pedicures,Aroma manicure,,300
+spa manicures and pedicures,Aroma Pedicure,,400
+spa manicures and pedicures,Royal manicure,,400
+spa manicures and pedicures,Royal pedicure,,600
+spa manicures and pedicures,Paraffin manicure,,400
+spa manicures and pedicures,Paraffin Pedicure,,600
+spa manicures and pedicures,Crystal spa manicure,,400
+spa manicures and pedicures,Crystal spa pedicure,,600
+Ear peircing :,For both ears (ordinary ),,400
+Ear peircing :,Gold plated,,800
+Hair care :,Hot oil massage,,250
+Hair wash :,Shampoo,,150
+Hair wash :,Shampoo and conditioning,,250
+Hair spa,Deep conditioning therapy,Short,600
+Hair spa,Deep conditioning therapy,Medium,800
+Hair spa,Deep conditioning therapy,Long,1000
+Hair spa,Antidandruff treatment,Short,700
+Hair spa,Antidandruff treatment,Medium,800
+Hair spa,Antidandruff treatment,Long,900
+Hair spa,Hairfall treatment,Short,800
+Hair spa,Hairfall treatment,Medium,900
+Hair spa,Hairfall treatment,Long,1000
+Permanent Hair,Straightening,Short,4000
+Permanent Hair,Straightening,Medium,6000
+Permanent Hair,Straightening,Long,8000
+Permanent Hair,Rebonding,Short,3000
+Permanent Hair,Rebonding,Medium,4000
+Permanent Hair,Rebonding,Long,5000
+Haircuts :,Straight cut (one length),,250
+Haircuts :,Forward graduation,,200
+Haircuts :,Feather cut (deep u),,400
+Haircuts :,Layered cut,,700
+Haircuts :,Baby blunt cut,,300
+Hair colours :,Global (complete head ),Short,350
+Hair colours :,Global (complete head ),Medium,450
+Hair colours :,Global (complete head ),Long,700
+Hair colours :,Route touchup,Short,350
+Hair colours :,Highlights,Short,350
+Hair colours :,Temporary colour spray per streak,Short,75
+Henna colouring and conditioning:,Henna colouring,Short,300
+Henna colouring and conditioning:,Henna colouring,Medium,400
+Henna colouring and conditioning:,Henna colouring,Long,500
+Henna colouring and conditioning:,Black Henna,Short,400
+Henna colouring and conditioning:,Black Henna,Medium,500
+Henna colouring and conditioning:,Black Henna,Long,600
+Hairstyling,Blow dry styling,,500
+Hairstyling,Straightening,,500
+Hairstyling,curls,,600
+Hairstyling,Crimping,,500
+Hairstyling,Strighting and curled ends,,700
+Make up:,Day Makeup,,3500
+Make up:,Party Makeup,,4000
+Make up:,Fashion makeup,,4500
+Make up:,Bridal makeup,,9500
+Body massages and spa therapies,Swedish Body Massage,,1500
+Body massages and spa therapies,Stone massage,,2000
+Body massages and spa therapies,Aromatherapy Massage,,2500
+Body massages and spa therapies,Body polishing,,3000
+Body massages and spa therapies,Body steam,,300
+Body massages and spa therapies,Body wrap,,1000
+Body massages and spa therapies,Body mudmask,,1000
+Body massages and spa therapies,Complete Bridal body package,,4500
+bride package:,bride,,9990

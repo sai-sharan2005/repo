@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedhikaArts - WhatsApp Marketing Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS (CDN for rapid visual assembly) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        white: '#1a202c',
+                        brand: {
+                            dark: '#f8fafc',
+                            darker: '#f1f5f9',
+                            card: '#ffffff',
+                            border: '#e2e8f0',
+                            primary: '#1A6B8A',
+                            primaryHover: '#2196B8',
+                            accent: '#1A6B8A',
+                            neonBlue: '#1A6B8A',
+                        },
+                        slate: {
+                            950: '#ffffff',
+                            900: '#f8fafc',
+                            800: '#f1f5f9',
+                            700: '#e2e8f0',
+                            600: '#cbd5e1',
+                            500: '#94a3b8',
+                            400: '#64748b',
+                            300: '#475569',
+                            200: '#334155',
+                            100: '#1e293b',
+                            50: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            scrollbar-width: thin;
+            scrollbar-color: #e2e8f0 #f8fafc;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .neon-glow-green {
+            box-shadow: 0 0 20px rgba(26, 107, 138, 0.15);
+        }
+        .neon-glow-blue {
+            box-shadow: 0 0 20px rgba(26, 107, 138, 0.15);
+        }
+        .neon-glow-red {
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
+        }
+
+        .glow-border:focus {
+            outline: none;
+            border-color: #1A6B8A;
+            box-shadow: 0 0 0 2px rgba(26, 107, 138, 0.2), 0 0 10px rgba(26, 107, 138, 0.2);
+        }
+
+        /* Pulsing states */
+        @keyframes pulse-green {
+            0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(26, 107, 138, 0.7); }
+            50% { transform: scale(1.05); opacity: 0.8; box-shadow: 0 0 12px 4px rgba(26, 107, 138, 0); }
+        }
+        .pulse-green-dot {
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes scan-line {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+        .scanner-line {
+            animation: scan-line 3s linear infinite;
+        }
+
+        /* simulated chat bubble styles */
+        .chat-bg {
+            background-color: #e5ddd5;
+            background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+            background-repeat: repeat;
+        }
+
+        /* Tab Transitions */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-slate-100 font-sans min-h-screen antialiased flex flex-col">
+
+    <!-- Main Workspace -->
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 border-r border-brand-border bg-brand-dark/80 p-6 flex flex-col justify-between hidden md:flex">
+            <div class="flex flex-col gap-6">
+                <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">Navigation Hub</p>
+                <nav class="flex flex-col gap-2">
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn active flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition bg-brand-card text-brand-primary border-l-4 border-brand-primary">
+                        <i class="fa-solid fa-chart-line w-5 text-center"></i>
+                        <span>Dashboard</span>
+                    </button>
+                    <button onclick="switchTab('new-campaign')" id="nav-new-campaign" class="nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition text-slate-400 hover:bg-slate-800/40 hover:text-slate-100">
+                        <i class="fa-solid fa-paper-plane w-5 text-center"></i>
+                        <span>New Campaign</span>
+                    </button>
+                    <button onclick="switchTab('clients')" id="nav-clients" class="nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition text-slate-400 hover:bg-slate-800/40 hover:text-slate-100">
+                        <i class="fa-solid fa-users w-5 text-center"></i>
+                        <span>Audience Directory</span>
+                    </button>
+                    <button onclick="switchTab('history')" id="nav-history" class="nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition text-slate-400 hover:bg-slate-800/40 hover:text-slate-100">
+                        <i class="fa-solid fa-clock-rotate-left w-5 text-center"></i>
+                        <span>Campaign Logs</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Author & API Version -->
+            <div class="glass p-4 rounded-2xl border border-brand-border/60">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-brand-neonBlue">
+                        <i class="fa-solid fa-server text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-bold text-slate-200">Local Engine</p>
+                        <p class="text-[9px] text-slate-400 font-medium">NodeJS v18+ | WA-Web</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Dynamic Dashboard Container -->
+        <main class="flex-1 p-6 md:p-8 overflow-y-auto max-h-[calc(100vh-80px)]">
+
+            <!-- TAB 1: DASHBOARD -->
+            <section id="tab-dashboard" class="tab-content active space-y-6">
+                <!-- Welcome Widget -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gradient-to-r from-brand-card to-brand-dark border border-brand-border p-6 rounded-3xl relative overflow-hidden">
+                    <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+                    <div>
+                        <h2 class="font-outfit font-extrabold text-2xl text-white">WhatsApp Marketing Console 📊</h2>
+                        <p class="text-sm text-slate-400 mt-1">Configure automated campaigns, segment customer lists, and audit bulk delivery status in real-time.</p>
+                    </div>
+                    <button onclick="switchTab('new-campaign')" class="bg-gradient-to-r from-brand-primary to-green-500 hover:from-green-500 hover:to-brand-primary text-slate-900 font-bold px-5 py-3 rounded-xl shadow-lg shadow-green-500/15 flex items-center gap-2 transition transform hover:scale-[1.02]">
+                        <i class="fa-solid fa-plus-circle"></i>
+                        <span>Create Campaign</span>
+                    </button>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="glass p-5 rounded-2xl border border-brand-border flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Broadcasts</p>
+                            <h3 id="stat-total-campaigns" class="text-3xl font-black font-outfit mt-1 text-white">0</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-brand-neonBlue">
+                            <i class="fa-solid fa-mail-bulk text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="glass p-5 rounded-2xl border border-brand-border flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Messages Sent</p>
+                            <h3 id="stat-total-messages" class="text-3xl font-black font-outfit mt-1 text-white">0</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-brand-primary">
+                            <i class="fa-solid fa-envelope-circle-check text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="glass p-5 rounded-2xl border border-brand-border flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Successful Delivery</p>
+                            <h3 id="stat-success-rate" class="text-3xl font-black font-outfit mt-1 text-white">0%</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                            <i class="fa-solid fa-circle-check text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="glass p-5 rounded-2xl border border-brand-border flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Delivery Failures</p>
+                            <h3 id="stat-failed-messages" class="text-3xl font-black font-outfit mt-1 text-rose-400">0</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center text-rose-400">
+                            <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Layout Grid (Status vs. Action Panel) -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Left: Realtime Status & QR Code Link Panel -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="glass p-6 rounded-3xl border border-brand-border flex flex-col items-center text-center relative overflow-hidden">
+                            <h3 class="font-outfit font-extrabold text-lg text-white mb-4 self-start flex items-center gap-2">
+                                <span>📱 Connection Gateway</span>
+                            </h3>
+
+                            <!-- Connected Panel -->
+                            <div id="qr-connected-panel" class="hidden py-8 space-y-4">
+                                <div class="w-24 h-24 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-brand-primary mx-auto pulse-green-dot">
+                                    <i class="fa-solid fa-link text-4xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-outfit font-black text-xl text-emerald-400">SESSION AUTHORIZED</h4>
+                                    <p class="text-xs text-slate-400 mt-1 max-w-[200px] mx-auto">Your Node.js WhatsApp client is logged in and ready for high-speed background broadcasting!</p>
+                                </div>
+                            </div>
+
+                            <!-- Disconnected & QR Panel -->
+                            <div id="qr-disconnected-panel" class="py-4 space-y-4 w-full">
+                                <div class="p-3 bg-rose-500/10 border border-rose-500/25 rounded-2xl text-left flex items-start gap-3">
+                                    <span class="text-rose-400 text-lg mt-0.5"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                                    <p class="text-[11px] text-slate-300 leading-relaxed font-semibold">
+                                        Server automation client offline. Please link your WhatsApp account by scanning the QR code below to unlock background processing.
+                                    </p>
+                                </div>
+
+                                <!-- QR Image Frame -->
+                                <div class="relative w-52 h-52 bg-white rounded-2xl mx-auto p-4 flex items-center justify-center shadow-2xl border-4 border-slate-800">
+                                    <div class="absolute inset-0 border-2 border-dashed border-slate-300 rounded-xl m-2 pointer-events-none"></div>
+                                    
+                                    <!-- Scan Line Animation -->
+                                    <div class="scanner-line absolute left-0 right-0 h-0.5 bg-brand-primary shadow-lg shadow-green-500 opacity-60"></div>
+                                    
+                                    <img id="dashboard-qr-image" class="w-full h-full object-contain" src="https://placehold.co/200x200/f8fafc/64748b?text=Generating+QR..." alt="QR Code Link">
+                                </div>
+
+                                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
+                                    <i class="fa-solid fa-arrows-rotate animate-spin mr-1"></i> Refreshing code every 20s
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Recent Broadcast Activity Feed -->
+                    <div class="lg:col-span-2">
+                        <div class="glass p-6 rounded-3xl border border-brand-border flex flex-col h-full min-h-[400px]">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="font-outfit font-extrabold text-lg text-white flex items-center gap-2">
+                                    <span>📋 Recent Campaign Dispatch</span>
+                                </h3>
+                                <button onclick="switchTab('history')" class="text-xs text-brand-neonBlue font-bold hover:underline">View Log Archive</button>
+                            </div>
+
+                            <div class="flex-1 flex flex-col justify-center" id="recent-campaigns-container">
+                                <!-- Loaded dynamically -->
+                                <div class="text-center py-12 text-slate-500">
+                                    <i class="fa-solid fa-folder-open text-4xl mb-3"></i>
+                                    <p class="text-sm font-medium">No marketing history found in local storage</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- TAB 2: NEW CAMPAIGN -->
+            <section id="tab-new-campaign" class="tab-content space-y-6">
+                <!-- Page Banner -->
+                <div class="bg-gradient-to-r from-brand-card to-brand-dark border border-brand-border p-6 rounded-3xl">
+                    <h2 class="font-outfit font-extrabold text-2xl text-white">Draft Marketing Broadcast 🚀</h2>
+                    <p class="text-sm text-slate-400 mt-1">Design your broadcast template, select segments, attach photos and queue automation.</p>
+                </div>
+
+                <!-- Active sending monitoring overlay (shows if polling is active) -->
+                <div id="campaign-progress-monitor" class="hidden glass p-6 rounded-3xl border-2 border-brand-neonBlue/30 bg-blue-950/20 neon-glow-blue space-y-4">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                        <div>
+                            <span class="bg-brand-neonBlue/15 text-brand-neonBlue px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border border-brand-neonBlue/30">Active Background Queue</span>
+                            <h3 id="monitor-campaign-name" class="font-outfit font-black text-xl text-white mt-1">Campaign Processing...</h3>
+                            <p id="monitor-campaign-text" class="text-xs text-slate-400 mt-0.5">Please wait while the server processes delivery list.</p>
+                        </div>
+                        <div class="text-right">
+                            <span id="monitor-campaign-percent" class="text-2xl font-black font-outfit text-brand-neonBlue">0%</span>
+                            <p class="text-[10px] text-slate-500 uppercase font-extrabold">Progress Bar</p>
+                        </div>
+                    </div>
+
+                    <!-- Beautiful Progress Bar -->
+                    <div class="w-full bg-slate-900 border border-slate-800 rounded-full h-4 overflow-hidden relative p-[2px]">
+                        <div id="monitor-campaign-progressbar" class="bg-gradient-to-r from-brand-neonBlue to-cyan-400 h-full rounded-full w-0 transition-all duration-300"></div>
+                    </div>
+
+                    <!-- Statistics Block -->
+                    <div class="grid grid-cols-3 gap-4 py-2 border-t border-slate-800">
+                        <div class="text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Recipients</p>
+                            <h4 id="monitor-campaign-total" class="text-lg font-bold text-slate-200">0</h4>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Messages Sent</p>
+                            <h4 id="monitor-campaign-sent" class="text-lg font-bold text-emerald-400">0</h4>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[10px] font-bold text-rose-500 uppercase tracking-wider">Failures</p>
+                            <h4 id="monitor-campaign-failed" class="text-lg font-bold text-rose-400">0</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form & Preview split grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    
+                    <!-- Left Columns: Setup Parameters -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="glass p-6 rounded-3xl border border-brand-border space-y-5">
+                            
+                            <!-- Campaign Name -->
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Campaign Name</label>
+                                <input type="text" id="campaign-name" placeholder="E.g. VIP Diwali Special 2026" class="bg-slate-950/60 border border-slate-800 p-4 rounded-xl text-slate-200 font-semibold focus:border-brand-neonBlue glow-border w-full text-sm">
+                            </div>
+
+                            <!-- Target Segmentation Selector -->
+                            <div class="flex flex-col gap-2">
+                                <div class="flex justify-between items-center">
+                                    <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Target Audience Segment</label>
+                                    <span id="target-count-badge" class="bg-brand-primary/10 text-brand-primary text-[10px] font-black px-2.5 py-1 rounded-md border border-brand-primary/20">0 selected</span>
+                                </div>
+                                <select id="audience-select" onchange="handleAudienceChange()" class="bg-slate-950/60 border border-slate-800 p-4 rounded-xl text-slate-200 font-semibold focus:border-brand-neonBlue glow-border w-full text-sm cursor-pointer">
+                                    <option value="all">👥 Broadcast All Clients</option>
+                                    <option value="vip">💎 VIP Clients Only</option>
+                                    <option value="inactive">💤 Inactive Segment (3+ Months)</option>
+                                    <option value="male">👨 Male Clients</option>
+                                    <option value="female">👩 Female Clients</option>
+                                    <option value="custom">🛠️ Custom Selected Recipients...</option>
+                                </select>
+                            </div>
+
+                            <!-- Custom Client Selection (Collapsible List) -->
+                            <div id="custom-client-list-container" class="hidden flex flex-col gap-2 p-4 bg-slate-950/40 border border-slate-800 rounded-2xl">
+                                <div class="flex justify-between items-center mb-2">
+                                    <input type="text" id="client-search" placeholder="Filter clients by name..." oninput="renderCustomClientChecklist()" class="flex-1 bg-slate-900 border border-slate-800 px-3 py-2 rounded-lg text-xs font-semibold focus:border-brand-neonBlue">
+                                    <div class="flex gap-2 ml-2">
+                                        <button onclick="toggleAllCheckboxes(true)" class="bg-slate-800 hover:bg-slate-700 px-2 py-1.5 rounded-lg text-[10px] font-bold">All</button>
+                                        <button onclick="toggleAllCheckboxes(false)" class="bg-slate-800 hover:bg-slate-700 px-2 py-1.5 rounded-lg text-[10px] font-bold">None</button>
+                                    </div>
+                                </div>
+                                <div id="custom-client-checklist" class="max-height-[200px] overflow-y-auto divide-y divide-slate-800/40 pr-1 space-y-1">
+                                    <!-- Clients checkboxes list dynamically loaded -->
+                                </div>
+                            </div>
+
+                            <!-- Template Message Composition -->
+                            <div class="flex flex-col gap-2">
+                                <div class="flex justify-between items-center">
+                                    <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Broadcast Content</label>
+                                    <!-- Shortcut tokens -->
+                                    <div class="flex flex-wrap gap-1">
+                                        <button onclick="insertPlaceholder('{name}')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[9px] px-2 py-1 rounded-md transition border border-slate-700/50">+{Name}</button>
+                                        <button onclick="insertPlaceholder('{phone}')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[9px] px-2 py-1 rounded-md transition border border-slate-700/50">+{Phone}</button>
+                                        <button onclick="insertPlaceholder('{gender}')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[9px] px-2 py-1 rounded-md transition border border-slate-700/50">+{Gender}</button>
+                                    </div>
+                                </div>
+                                <textarea id="campaign-message-textarea" rows="6" oninput="updateLivePreview()" placeholder="Hello {name}! We have dynamic salon discounts prepared for you this week. Book a slot today!" class="bg-slate-950/60 border border-slate-800 p-4 rounded-xl text-slate-200 font-semibold focus:border-brand-neonBlue glow-border w-full text-sm resize-none"></textarea>
+                            </div>
+
+                            <!-- Drag-and-Drop Image Uploader -->
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Attach Promotion Image</label>
+                                
+                                <div id="dropzone" class="border-2 border-dashed border-brand-border hover:border-brand-neonBlue rounded-2xl p-6 bg-slate-950/20 text-center transition cursor-pointer flex flex-col items-center justify-center group relative overflow-hidden">
+                                    <input type="file" id="media-file-input" accept="image/*" onchange="handleFileSelect(event)" class="absolute inset-0 opacity-0 cursor-pointer">
+                                    
+                                    <div id="dropzone-default" class="space-y-2">
+                                        <div class="w-12 h-12 rounded-full bg-slate-800/80 flex items-center justify-center text-slate-400 group-hover:text-brand-neonBlue group-hover:bg-brand-neonBlue/10 transition mx-auto">
+                                            <i class="fa-solid fa-cloud-arrow-up text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-bold text-slate-300">Click to browse or drag & drop</p>
+                                            <p class="text-[9px] text-slate-500 font-medium mt-1">Supports PNG, JPG, JPEG (Max 5MB)</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Uploaded thumbnail preview -->
+                                    <div id="dropzone-preview" class="hidden w-full flex items-center gap-4 text-left relative z-10">
+                                        <img id="uploaded-thumbnail" class="w-16 h-16 rounded-xl object-cover border border-slate-700" src="" alt="Thumbnail">
+                                        <div class="flex-1">
+                                            <p id="uploaded-filename" class="text-xs font-bold text-slate-200 max-w-[200px] truncate">promo.png</p>
+                                            <p id="uploaded-filesize" class="text-[10px] text-slate-400 font-medium">1.2 MB</p>
+                                            <span class="bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-wider mt-1 inline-block">Uploaded Successfully</span>
+                                        </div>
+                                        <button onclick="clearMediaUpload(event)" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-rose-500/10 hover:text-rose-400 flex items-center justify-center text-slate-400 transition">
+                                            <i class="fa-solid fa-trash-can text-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sending Method Selector -->
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Sending Dispatch Method</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <!-- Server Auto button -->
+                                    <button id="btn-method-server" onclick="selectDispatchMethod('server')" class="glass hover:bg-slate-800/80 p-4 rounded-xl border border-brand-border text-left transition relative flex flex-col gap-1 active">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm font-bold text-slate-200">⚡ Server API (Auto)</span>
+                                            <span id="form-server-status-dot" class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-lg shadow-rose-500/30"></span>
+                                        </div>
+                                        <p class="text-[10px] text-slate-400 leading-normal">Native background worker runs in the background. Does not block the browser window.</p>
+                                    </button>
+
+                                    <!-- Browser Manual button -->
+                                    <button id="btn-method-browser" onclick="selectDispatchMethod('browser')" class="glass hover:bg-slate-800/80 p-4 rounded-xl border border-brand-border text-left transition flex flex-col gap-1">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm font-bold text-slate-200">🌐 Browser (Free)</span>
+                                        </div>
+                                        <p class="text-[10px] text-slate-400 leading-normal">Utilizes browser-based manual trigger. Falls back to individual chat redirection loops.</p>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Action button -->
+                            <button onclick="launchBroadcast()" class="bg-gradient-to-r from-brand-primary to-green-500 hover:from-green-500 hover:to-brand-primary text-slate-950 font-black tracking-wide font-outfit uppercase py-4 rounded-2xl w-full text-base transition shadow-xl shadow-green-500/10 flex items-center justify-center gap-3 transform hover:scale-[1.01] active:scale-[0.99]">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Launch Broadcast Campaign</span>
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <!-- Right Columns: Mock Chat Preview Screen -->
+                    <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+                        <div class="glass p-6 rounded-3xl border border-brand-border">
+                            <h3 class="font-outfit font-extrabold text-sm text-slate-300 uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <span>📱 Real-Time Phone Preview</span>
+                            </h3>
+
+                            <!-- WhatsApp Mock Device Frame -->
+                            <div class="w-full max-w-[340px] mx-auto rounded-[36px] border-[10px] border-slate-800 bg-slate-900 shadow-2xl relative overflow-hidden aspect-[9/18]">
+                                <!-- Device Notch -->
+                                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-5 bg-slate-800 rounded-b-xl z-20"></div>
+
+                                <!-- Mock Chat Interface -->
+                                <div class="absolute inset-0 flex flex-col chat-bg">
+                                    
+                                    <!-- Chat Header -->
+                                    <div class="bg-[#075e54] text-[#ffffff] pt-7 pb-3 px-4 flex items-center gap-2 shadow-md relative z-10">
+                                        <i class="fa-solid fa-arrow-left text-sm cursor-pointer"></i>
+                                        <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-800 font-extrabold text-xs font-outfit">M</div>
+                                        <div class="flex-1">
+                                            <h4 class="text-xs font-bold leading-none">MedhikaArts Salon</h4>
+                                            <span class="text-[9px] text-green-300 font-medium leading-none">Online</span>
+                                        </div>
+                                        <div class="flex gap-3 text-sm">
+                                            <i class="fa-solid fa-video"></i>
+                                            <i class="fa-solid fa-phone"></i>
+                                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- Chat Body -->
+                                    <div class="flex-1 p-3 overflow-y-auto space-y-4 flex flex-col justify-end">
+                                        
+                                        <!-- Simulated Chat Bubble -->
+                                        <div class="max-w-[85%] self-end bg-[#dcf8c6] border border-emerald-100 rounded-lg p-2.5 text-slate-800 shadow-md relative group">
+                                            
+                                            <!-- Image Preview Bubble -->
+                                            <div id="preview-bubble-image-container" class="hidden w-full mb-2 rounded-md overflow-hidden bg-slate-100/50 aspect-video relative">
+                                                <img id="preview-bubble-image" class="w-full h-full object-cover" src="" alt="Campaign Image">
+                                            </div>
+
+                                            <p id="preview-bubble-text" class="text-xs leading-normal font-medium break-words text-slate-800">
+                                                Hello Guest! We have dynamic salon discounts prepared for you this week. Book a slot today!
+                                            </p>
+                                            
+                                            <div class="text-right text-[8px] text-slate-500 font-semibold mt-1">
+                                                12:00 PM <span class="text-blue-500 ml-0.5"><i class="fa-solid fa-check-double"></i></span>
+                                            </div>
+                                            
+                                            <!-- Chat Bubble Tail -->
+                                            <div class="absolute top-0 right-0 transform translate-x-1.5 w-3 h-3 bg-[#dcf8c6] rotate-45 border-r border-t border-emerald-100 rounded-sm"></div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Chat Input Bar -->
+                                    <div class="bg-slate-100 p-2 flex items-center gap-2 border-t border-slate-200">
+                                        <i class="fa-regular fa-smile text-slate-500 text-lg"></i>
+                                        <div class="flex-1 bg-white rounded-full px-3 py-1.5 text-[10px] text-slate-400 font-medium">Type a message</div>
+                                        <i class="fa-solid fa-microphone text-slate-500 text-sm"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- TAB 3: CLIENT DIRECTORY -->
+            <section id="tab-clients" class="tab-content space-y-6">
+                <!-- Page Banner -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gradient-to-r from-brand-card to-brand-dark border border-brand-border p-6 rounded-3xl">
+                    <div>
+                        <h2 class="font-outfit font-extrabold text-2xl text-white">Client Audience Directory 👥</h2>
+                        <p class="text-sm text-slate-400 mt-1">Manage, query and audit your customer list loaded directly from the database.</p>
+                    </div>
+                </div>
+
+                <!-- Filters & Search block -->
+                <div class="glass p-5 rounded-3xl border border-brand-border flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="w-full md:w-96 relative">
+                        <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500"><i class="fa-solid fa-search"></i></span>
+                        <input type="text" id="dir-search" placeholder="Search customer directory by name or phone..." oninput="handleClientDirSearch()" class="bg-slate-950/60 border border-slate-800 pl-11 pr-4 py-3 rounded-xl text-slate-200 font-semibold focus:border-brand-neonBlue glow-border w-full text-xs">
+                    </div>
+
+                    <div class="flex items-center gap-3 w-full md:w-auto">
+                        <select id="dir-category-filter" onchange="handleClientDirSearch()" class="bg-slate-950/60 border border-slate-800 px-4 py-3 rounded-xl text-slate-200 font-semibold focus:border-brand-neonBlue w-full md:w-48 text-xs cursor-pointer">
+                            <option value="all">👥 Show All Categories</option>
+                            <option value="vip">💎 Show VIPs Only</option>
+                            <option value="active">🟢 Active Customers</option>
+                            <option value="male">👨 Male Clients</option>
+                            <option value="female">👩 Female Clients</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Customer Directory list -->
+                <div class="glass rounded-3xl border border-brand-border overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-brand-card/50 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-brand-border">
+                                    <th class="py-4 px-6">Name</th>
+                                    <th class="py-4 px-6">Phone Number</th>
+                                    <th class="py-4 px-6">Gender</th>
+                                    <th class="py-4 px-6">Category</th>
+                                    <th class="py-4 px-6">Outstanding</th>
+                                    <th class="py-4 px-6">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="directory-table-body" class="divide-y divide-brand-border/40 text-xs font-semibold text-slate-300">
+                                <tr>
+                                    <td colspan="6" class="py-12 text-center text-slate-500">
+                                        <i class="fa-solid fa-spinner animate-spin text-2xl mb-2"></i>
+                                        <p>Synchronizing customer records...</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- TAB 4: CAMPAIGN HISTORY LOGS -->
+            <section id="tab-history" class="tab-content space-y-6">
+                <!-- Page Banner -->
+                <div class="bg-gradient-to-r from-brand-card to-brand-dark border border-brand-border p-6 rounded-3xl">
+                    <h2 class="font-outfit font-extrabold text-2xl text-white">Broadcast Campaign Audit Logs 📋</h2>
+                    <p class="text-sm text-slate-400 mt-1">Review historical delivery reports, success rates, timestamps, and message templates.</p>
+                </div>
+
+                <!-- Campaign logs list -->
+                <div class="glass rounded-3xl border border-brand-border overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-brand-card/50 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-brand-border">
+                                    <th class="py-4 px-6">Campaign Info</th>
+                                    <th class="py-4 px-6">Sent Date</th>
+                                    <th class="py-4 px-6">Recipients</th>
+                                    <th class="py-4 px-6">Status</th>
+                                    <th class="py-4 px-6">Success Rate</th>
+                                    <th class="py-4 px-6">Detailed Audit</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body" class="divide-y divide-brand-border/40 text-xs font-semibold text-slate-300">
+                                <tr>
+                                    <td colspan="6" class="py-12 text-center text-slate-500">
+                                        <i class="fa-solid fa-spinner animate-spin text-2xl mb-2"></i>
+                                        <p>Retrieving historical logs...</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- POPUP AUDIT DIALOG (Drilldown Campaign Logs) -->
+    <div id="audit-modal" class="fixed inset-0 bg-brand-darker/95 backdrop-filter backdrop-blur-md z-[60] hidden flex items-center justify-center p-4">
+        <div class="glass rounded-3xl max-w-2xl w-full border border-brand-border p-6 flex flex-col max-h-[85vh] relative overflow-hidden">
+            <button onclick="closeAuditModal()" class="absolute top-5 right-5 w-8 h-8 bg-slate-800 hover:bg-rose-500/10 hover:text-rose-400 flex items-center justify-center text-slate-400 rounded-full transition cursor-pointer">
+                <i class="fa-solid fa-times text-base"></i>
+            </button>
+
+            <h3 class="font-outfit font-black text-xl text-white mb-1 flex items-center gap-2">
+                <span>📊 Campaign Delivery Audit</span>
+            </h3>
+            <p id="audit-modal-subtitle" class="text-xs text-slate-400">Loading details...</p>
+
+            <div class="border-t border-brand-border/60 my-4"></div>
+
+            <!-- Campaign Statistics breakdown -->
+            <div class="grid grid-cols-3 gap-3 p-4 bg-slate-950/40 rounded-2xl border border-brand-border/60 mb-4">
+                <div class="text-center">
+                    <p class="text-[9px] font-bold text-slate-500 uppercase">Success</p>
+                    <h4 id="audit-stat-success" class="text-lg font-black text-emerald-400">0</h4>
+                </div>
+                <div class="text-center">
+                    <p class="text-[9px] font-bold text-slate-500 uppercase">Failures</p>
+                    <h4 id="audit-stat-failed" class="text-lg font-black text-rose-400">0</h4>
+                </div>
+                <div class="text-center">
+                    <p class="text-[9px] font-bold text-slate-500 uppercase">Total Queue</p>
+                    <h4 id="audit-stat-total" class="text-lg font-black text-slate-300">0</h4>
+                </div>
+            </div>
+
+            <!-- Recipients table -->
+            <div class="flex-1 overflow-y-auto divide-y divide-brand-border/30 border border-brand-border/60 rounded-2xl bg-brand-dark/40 pr-1">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-brand-card/40 text-[9px] text-slate-400 font-bold uppercase tracking-wider sticky top-0 border-b border-brand-border">
+                            <th class="py-2.5 px-4 text-left">Recipient</th>
+                            <th class="py-2.5 px-4 text-left">Phone</th>
+                            <th class="py-2.5 px-4 text-left">Status</th>
+                            <th class="py-2.5 px-4 text-left">Delivery Error/Audit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="audit-table-body" class="divide-y divide-slate-800 text-[11px] font-medium text-slate-300">
+                        <!-- Loaded dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <button onclick="closeAuditModal()" class="w-full bg-slate-800 hover:bg-slate-700 py-3.5 rounded-xl text-xs font-bold text-white transition mt-4">Close Audit Log</button>
+        </div>
+    </div>
+
+
+    <!-- CORE MARKETING JAVASCRIPT CONTROLLER -->
+    <script>
+        const API_URL = (window.location.port === '5000')
+            ? '/api'
+            : (window.location.protocol === 'file:')
+                ? 'http://localhost:5000/api'
+                : `${window.location.protocol}//${window.location.hostname}:5000/api`;
+        
+        let clientDatabase = [];
+        let campaignLogs = [];
+        let selectedDispatchMethod = 'server'; // 'server' or 'browser'
+        let base64ImageString = null;
+        let selectedFileMetadata = null;
+        
+        let localStatusInterval = null;
+        let activePollingInterval = null;
+        let activeCampaignId = null;
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', async () => {
+            if (window.self !== window.top) {
+                const link = document.getElementById('admin-panel-link');
+                if (link) link.style.display = 'none';
+            }
+            await syncClientDatabase();
+            await fetchCampaignLogs();
+            await monitorServerStatus();
+            
+            // Check status every 4 seconds
+            localStatusInterval = setInterval(monitorServerStatus, 4000);
+            
+            // Render custom checkboxes list
+            renderCustomClientChecklist();
+            updateLivePreview();
+        });
+
+        // Switch Navigation Tabs
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active', 'bg-brand-card', 'text-brand-primary', 'border-l-4', 'border-brand-primary'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.add('text-slate-400'));
+            
+            const targetTab = document.getElementById(`tab-${tabId}`);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const targetNav = document.getElementById(`nav-${tabId}`);
+            if (targetNav) {
+                targetNav.classList.remove('text-slate-400');
+                targetNav.classList.add('active', 'bg-brand-card', 'text-brand-primary', 'border-l-4', 'border-brand-primary');
+            }
+
+            if (tabId === 'dashboard') {
+                updateDashboardStats();
+            } else if (tabId === 'clients') {
+                renderClientDirectory();
+            } else if (tabId === 'history') {
+                renderCampaignLogsTable();
+            }
+        }
+
+        // 1. Fetch Client Database
+        async function syncClientDatabase() {
+            try {
+                const res = await fetch(`${API_URL}/clients`);
+                if (res.ok) {
+                    clientDatabase = await res.json();
+                    document.getElementById('target-count-badge').innerText = `${clientDatabase.length} selected`;
+                }
+            } catch (e) {
+                console.error('Failed to sync clients:', e);
+            }
+        }
+
+        // 2. Fetch Campaign Logs
+        async function fetchCampaignLogs() {
+            try {
+                const res = await fetch(`${API_URL}/whatsapp/campaigns`);
+                if (res.ok) {
+                    campaignLogs = await res.json();
+                    updateDashboardStats();
+                    renderRecentDashboardFeed();
+                }
+            } catch (e) {
+                console.error('Failed to fetch campaign logs:', e);
+            }
+        }
+
+        // 3. Monitor Server Connection Status
+        async function monitorServerStatus() {
+            try {
+                const res = await fetch(`${API_URL}/whatsapp/status`);
+                if (res.ok) {
+                    const data = await res.json();
+                    
+                    const badge = document.getElementById('top-status-badge');
+                    const dot = document.getElementById('status-dot');
+                    const ping = document.getElementById('status-ping');
+                    const label = document.getElementById('status-label');
+                    const formServerDot = document.getElementById('form-server-status-dot');
+                    
+                    const connConnected = document.getElementById('qr-connected-panel');
+                    const connDisconnected = document.getElementById('qr-disconnected-panel');
+                    const qrImg = document.getElementById('dashboard-qr-image');
+                    
+                    if (data.ready) {
+                        // Connected State
+                        dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500';
+                        ping.className = 'animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400';
+                        label.className = 'text-xs font-bold font-outfit uppercase tracking-wider text-emerald-400';
+                        label.innerText = 'Connected';
+                        
+                        if (formServerDot) {
+                            formServerDot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-lg shadow-green-500/30';
+                        }
+                        
+                        if (connConnected) connConnected.classList.remove('hidden');
+                        if (connDisconnected) connDisconnected.classList.add('hidden');
+                    } else {
+                        // Disconnected State
+                        dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500';
+                        ping.className = 'animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-rose-400';
+                        label.className = 'text-xs font-bold font-outfit uppercase tracking-wider text-rose-400';
+                        label.innerText = 'Automation Offline';
+                        
+                        if (formServerDot) {
+                            formServerDot.className = 'w-2.5 h-2.5 rounded-full bg-rose-500 shadow-lg shadow-rose-500/30';
+                        }
+                        
+                        if (connConnected) connConnected.classList.add('hidden');
+                        if (connDisconnected) connDisconnected.classList.remove('hidden');
+                        
+                        if (qrImg) {
+                            if (data.qr) {
+                                qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(data.qr)}`;
+                            } else {
+                                qrImg.src = `https://placehold.co/200x200/f8fafc/64748b?text=Generating+QR...`;
+                            }
+                        }
+                    }
+                }
+            } catch (e) {
+                console.error('Failed to poll WhatsApp status:', e);
+            }
+        }
+
+        // Update Dashboard Stats Counters
+        function updateDashboardStats() {
+            document.getElementById('stat-total-campaigns').innerText = campaignLogs.length;
+            
+            let sent = 0;
+            let failed = 0;
+            
+            campaignLogs.forEach(c => {
+                const results = c.results || [];
+                sent += results.filter(r => r.status === 'sent').length;
+                failed += results.filter(r => r.status === 'failed').length;
+            });
+            
+            const totalMsg = sent + failed;
+            document.getElementById('stat-total-messages').innerText = totalMsg;
+            document.getElementById('stat-failed-messages').innerText = failed;
+            
+            const successRate = totalMsg > 0 ? Math.round((sent / totalMsg) * 100) : 100;
+            document.getElementById('stat-success-rate').innerText = `${successRate}%`;
+        }
+
+        // Render Recent Dashboard Broadcast feed
+        function renderRecentDashboardFeed() {
+            const container = document.getElementById('recent-campaigns-container');
+            if (!container) return;
+            
+            if (campaignLogs.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-slate-500">
+                        <i class="fa-solid fa-folder-open text-4xl mb-3"></i>
+                        <p class="text-sm font-medium">No marketing history found in local storage</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Sort by timestamp descending and take top 3
+            const recent = [...campaignLogs]
+                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+                .slice(0, 3);
+                
+            let html = `<div class="space-y-3 w-full">`;
+            
+            recent.forEach(c => {
+                const sent = (c.results || []).filter(r => r.status === 'sent').length;
+                const failed = (c.results || []).filter(r => r.status === 'failed').length;
+                const total = c.recipientsCount;
+                
+                let statusBg = 'bg-blue-500/10 text-blue-400 border-blue-500/25';
+                if (c.status === 'completed') statusBg = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25';
+                if (c.status === 'failed') statusBg = 'bg-rose-500/10 text-rose-400 border-rose-500/25';
+                if (c.status === 'waiting_for_whatsapp') statusBg = 'bg-amber-500/10 text-amber-400 border-amber-500/25 animate-pulse';
+                
+                html += `
+                    <div class="glass p-4 rounded-2xl border border-brand-border/60 hover:border-slate-700 transition flex items-center justify-between gap-4">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-outfit font-bold text-sm text-slate-200 truncate">${c.name}</h4>
+                            <p class="text-[10px] text-slate-500 font-semibold mt-0.5">
+                                <i class="fa-solid fa-calendar-day mr-1"></i> ${new Date(c.timestamp).toLocaleString()}
+                            </p>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider border ${statusBg}">
+                                ${c.status.replace(/_/g, ' ')}
+                            </span>
+                            <p class="text-[10px] text-slate-400 font-bold mt-1.5">${sent}/${total} Delivered</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        // Toggle Dispatch Options (Server vs Browser)
+        function selectDispatchMethod(method) {
+            selectedDispatchMethod = method;
+            
+            const btnServer = document.getElementById('btn-method-server');
+            const btnBrowser = document.getElementById('btn-method-browser');
+            
+            if (method === 'server') {
+                btnServer.classList.add('border-brand-neonBlue', 'bg-blue-950/10');
+                btnBrowser.classList.remove('border-brand-neonBlue', 'bg-blue-950/10');
+            } else {
+                btnBrowser.classList.add('border-brand-neonBlue', 'bg-blue-950/10');
+                btnServer.classList.remove('border-brand-neonBlue', 'bg-blue-950/10');
+            }
+        }
+
+        // Handle dropdown Target Audience select event
+        function handleAudienceChange() {
+            const select = document.getElementById('audience-select');
+            const container = document.getElementById('custom-client-list-container');
+            const badge = document.getElementById('target-count-badge');
+            
+            if (select.value === 'custom') {
+                container.classList.remove('hidden');
+                // Clear selection state in memory when switching to custom selection
+                clientDatabase.forEach(c => c.selected = false);
+                renderCustomClientChecklist();
+                updateCustomSelectedCount();
+            } else {
+                container.classList.add('hidden');
+                
+                // Set badge count based on predefined segment
+                const count = getTargetRecipients().length;
+                badge.innerText = `${count} selected`;
+            }
+        }
+
+        // Compute selected targets array based on dropdown value
+        function getTargetRecipients() {
+            const select = document.getElementById('audience-select');
+            
+            if (select.value === 'all') {
+                return clientDatabase;
+            } else if (select.value === 'vip') {
+                return clientDatabase.filter(c => c.category && c.category.toLowerCase().includes('vip'));
+            } else if (select.value === 'inactive') {
+                // simple mockup
+                return clientDatabase.slice(0, Math.ceil(clientDatabase.length * 0.3));
+            } else if (select.value === 'male') {
+                return clientDatabase.filter(c => c.gender && c.gender.toLowerCase() === 'male');
+            } else if (select.value === 'female') {
+                return clientDatabase.filter(c => c.gender && c.gender.toLowerCase() === 'female');
+            } else if (select.value === 'custom') {
+                return clientDatabase.filter(c => c.selected);
+            }
+            return [];
+        }
+
+        // Update selected custom clients badge count
+        function updateCustomSelectedCount() {
+            const count = getTargetRecipients().length;
+            document.getElementById('target-count-badge').innerText = `${count} selected`;
+        }
+
+        // Toggle in-memory selection state for a specific client
+        function toggleClientSelection(clientId, checked) {
+            const client = clientDatabase.find(c => c.id === clientId);
+            if (client) {
+                client.selected = checked;
+            }
+            updateCustomSelectedCount();
+        }
+
+        // Render Custom Client selection list
+        function renderCustomClientChecklist() {
+            const container = document.getElementById('custom-client-checklist');
+            const search = document.getElementById('client-search').value.toLowerCase();
+            
+            if (clientDatabase.length === 0) {
+                container.innerHTML = `<p class="text-[10px] text-slate-500 italic py-2">Loading customer records...</p>`;
+                return;
+            }
+            
+            const filtered = clientDatabase.filter(c => 
+                (c.name && c.name.toLowerCase().includes(search)) || 
+                (c.phone && c.phone.includes(search))
+            );
+            
+            let html = '';
+            filtered.forEach(c => {
+                const isChecked = c.selected ? 'checked' : '';
+                html += `
+                    <label class="flex items-center justify-between py-1.5 cursor-pointer hover:bg-slate-900/40 rounded px-2 transition select-none">
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" value="${c.id}" ${isChecked} class="client-checkbox rounded border-slate-700 bg-slate-950 text-brand-neonBlue focus:ring-brand-neonBlue" onchange="toggleClientSelection('${c.id}', this.checked)">
+                            <span class="text-[11px] font-bold text-slate-200">${c.name}</span>
+                        </div>
+                        <span class="text-[10px] text-slate-500 font-semibold">${c.phone}</span>
+                    </label>
+                `;
+            });
+            container.innerHTML = html || `<p class="text-[10px] text-slate-500 italic py-2 text-center">No matching clients found</p>`;
+        }
+
+        // Select All / Deselect All custom client checkboxes
+        function toggleAllCheckboxes(checked) {
+            const search = document.getElementById('client-search').value.toLowerCase();
+            const filtered = clientDatabase.filter(c => 
+                (c.name && c.name.toLowerCase().includes(search)) || 
+                (c.phone && c.phone.includes(search))
+            );
+            
+            filtered.forEach(c => {
+                c.selected = checked;
+            });
+            
+            renderCustomClientChecklist();
+            updateCustomSelectedCount();
+        }
+
+        // File drag and drop selection logic
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            processFile(file);
+        }
+
+        function processFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Please upload image files only.');
+                return;
+            }
+            
+            selectedFileMetadata = file;
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                base64ImageString = event.target.result;
+                
+                // Show dropzone preview
+                document.getElementById('dropzone-default').classList.add('hidden');
+                document.getElementById('dropzone-preview').classList.remove('hidden');
+                document.getElementById('uploaded-thumbnail').src = base64ImageString;
+                document.getElementById('uploaded-filename').innerText = file.name;
+                document.getElementById('uploaded-filesize').innerText = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+                
+                // Update Phone Preview Bubble
+                updateLivePreview();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearMediaUpload(e) {
+            if (e) e.stopPropagation();
+            
+            base64ImageString = null;
+            selectedFileMetadata = null;
+            document.getElementById('media-file-input').value = '';
+            
+            document.getElementById('dropzone-default').classList.remove('hidden');
+            document.getElementById('dropzone-preview').classList.add('hidden');
+            
+            updateLivePreview();
+        }
+
+        // Mock chat live rendering updates
+        function updateLivePreview() {
+            const text = document.getElementById('campaign-message-textarea').value || 'Hello Guest! We have dynamic salon discounts prepared for you this week. Book a slot today!';
+            
+            // Format mock placeholders for visual feedback
+            const formatted = text
+                .replace(/{name}/g, '<strong class="text-brand-primary">Balaji</strong>')
+                .replace(/{phone}/g, '<span class="text-slate-400">916300188680</span>')
+                .replace(/{gender}/g, '<span class="text-slate-400">Male</span>');
+                
+            document.getElementById('preview-bubble-text').innerHTML = formatted.replace(/\n/g, '<br>');
+            
+            const imgContainer = document.getElementById('preview-bubble-image-container');
+            const imgEl = document.getElementById('preview-bubble-image');
+            
+            if (base64ImageString) {
+                imgContainer.classList.remove('hidden');
+                imgEl.src = base64ImageString;
+            } else {
+                imgContainer.classList.add('hidden');
+                imgEl.src = '';
+            }
+        }
+
+        function insertPlaceholder(tag) {
+            const textarea = document.getElementById('campaign-message-textarea');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const text = textarea.value;
+            
+            textarea.value = text.substring(0, start) + tag + text.substring(end);
+            textarea.focus();
+            
+            // Put cursor right after inserted tag
+            textarea.selectionStart = textarea.selectionEnd = start + tag.length;
+            updateLivePreview();
+        }
+
+        // Launch Broadcast logic
+        async function launchBroadcast() {
+            const name = document.getElementById('campaign-name').value.trim();
+            const message = document.getElementById('campaign-message-textarea').value.trim();
+            const recipients = getTargetRecipients();
+            
+            if (!name) {
+                alert('Please enter a Campaign Name.');
+                return;
+            }
+            if (!message) {
+                alert('Please enter message template content.');
+                return;
+            }
+            if (recipients.length === 0) {
+                alert('Please select at least 1 recipient audience target.');
+                return;
+            }
+
+            if (selectedDispatchMethod === 'browser') {
+                // Browser Manual dispatch flow (Loop redirects)
+                if (confirm(`You are launching in Browser manual redirection mode. This will open individual WhatsApp tabs consecutively for ${recipients.length} clients. Pro insight: download the media file and paste (Ctrl+V) it in the chat box. Proceed?`)) {
+                    await launchManualBrowserFlow(recipients, message);
+                }
+                return;
+            }
+
+            // Server Automation flow
+            try {
+                let mediaUrls = [];
+                
+                // If image was attached, upload it first to obtain public URL
+                if (base64ImageString) {
+                    const uploadRes = await fetch(`${API_URL}/whatsapp/upload`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ image: base64ImageString })
+                    });
+                    
+                    if (uploadRes.ok) {
+                        const uploadData = await uploadRes.json();
+                        mediaUrls = [uploadData.url];
+                    } else {
+                        const err = await uploadRes.json();
+                        throw new Error(`Media upload failed: ${err.error}`);
+                    }
+                }
+                
+                // Dispatch Queue Trigger
+                const triggerRes = await fetch(`${API_URL}/whatsapp/send-bulk`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        recipients: recipients,
+                        message: message,
+                        mediaUrls: mediaUrls
+                    })
+                });
+
+                if (triggerRes.ok) {
+                    const triggerData = await triggerRes.json();
+                    activeCampaignId = triggerData.campaignId;
+                    
+                    // Display and start campaign monitoring polling
+                    document.getElementById('campaign-progress-monitor').classList.remove('hidden');
+                    document.getElementById('monitor-campaign-name').innerText = name;
+                    
+                    startCampaignMonitoring(activeCampaignId);
+                    
+                    // Reset inputs
+                    document.getElementById('campaign-name').value = '';
+                    document.getElementById('campaign-message-textarea').value = '';
+                    clearMediaUpload();
+                } else {
+                    const err = await triggerRes.json();
+                    alert(`Failed to launch campaign: ${err.error}`);
+                }
+            } catch (err) {
+                console.error(err);
+                alert(`Broadcast launch failed: ${err.message}`);
+            }
+        }
+
+        // Polling loop for active campaign stats monitoring
+        function startCampaignMonitoring(campaignId) {
+            if (activePollingInterval) clearInterval(activePollingInterval);
+            
+            const poll = async () => {
+                try {
+                    const res = await fetch(`${API_URL}/whatsapp/campaign/${campaignId}`);
+                    if (!res.ok) return;
+                    
+                    const campaign = await res.json();
+                    const results = campaign.results || [];
+                    
+                    const sent = results.filter(r => r.status === 'sent').length;
+                    const failed = results.filter(r => r.status === 'failed').length;
+                    const total = campaign.recipientsCount;
+                    const processed = sent + failed;
+                    
+                    const percent = total > 0 ? Math.round((processed / total) * 100) : 0;
+                    
+                    document.getElementById('monitor-campaign-percent').innerText = `${percent}%`;
+                    document.getElementById('monitor-campaign-progressbar').style.width = `${percent}%`;
+                    document.getElementById('monitor-campaign-total').innerText = total;
+                    document.getElementById('monitor-campaign-sent').innerText = sent;
+                    document.getElementById('monitor-campaign-failed').innerText = failed;
+                    
+                    let statusText = `Campaign processing: dispatched ${processed} of ${total} recipients.`;
+                    if (campaign.status === 'waiting_for_whatsapp') {
+                        statusText = `⚠️ Server WhatsApp Automation is offline! Please scan the QR code in the dashboard tab to launch.`;
+                    }
+                    document.getElementById('monitor-campaign-text').innerText = statusText;
+                    
+                    if (campaign.status === 'completed' || campaign.status === 'completed_with_errors' || campaign.status === 'failed') {
+                        clearInterval(activePollingInterval);
+                        activePollingInterval = null;
+                        
+                        document.getElementById('monitor-campaign-text').innerText = `Campaign ${campaign.status === 'completed' ? 'successfully completed' : 'finished with some errors'}. Check Campaign Logs.`;
+                        
+                        // Sync logs
+                        await fetchCampaignLogs();
+                    }
+                } catch (e) {
+                    console.error('Polling campaign error:', e);
+                }
+            };
+            
+            poll();
+            activePollingInterval = setInterval(poll, 2000);
+        }
+
+        // Browser Native Redirection Loop
+        async function launchManualBrowserFlow(recipients, messageTemplate) {
+            for (let i = 0; i < recipients.length; i++) {
+                const r = recipients[i];
+                
+                // Form message with placeholder template
+                const personalized = messageTemplate
+                    .replace(/{name}/g, r.name || 'Client')
+                    .replace(/{phone}/g, r.phone)
+                    .replace(/{gender}/g, r.gender || '');
+                    
+                const waUrl = `https://web.whatsapp.com/send?phone=${r.phone}&text=${encodeURIComponent(personalized)}`;
+                
+                // Open Chat
+                window.open(waUrl, '_blank');
+                
+                // Download file locally to let user drag and drop
+                if (selectedFileMetadata) {
+                    const downloadUrl = URL.createObjectURL(selectedFileMetadata);
+                    const a = document.createElement('a');
+                    a.href = downloadUrl;
+                    a.download = `medhika_${selectedFileMetadata.name}`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+                
+                // Give standard delay between opening chats
+                if (i < recipients.length - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 4000));
+                }
+            }
+        }
+
+
+        // TAB 3: CLIENT DIRECTORY RENDERING
+        function renderClientDirectory() {
+            const table = document.getElementById('directory-table-body');
+            if (clientDatabase.length === 0) {
+                table.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-500">No client database loaded</td></tr>`;
+                return;
+            }
+            
+            let html = '';
+            clientDatabase.forEach(c => {
+                const categoryBadge = c.category && c.category.toLowerCase().includes('vip') 
+                    ? `<span class="bg-blue-500/10 text-brand-neonBlue px-2.5 py-0.5 rounded border border-blue-500/20 font-black uppercase tracking-wider text-[9px]"><i class="fa-solid fa-gem mr-1"></i>VIP</span>`
+                    : `<span class="bg-slate-800 text-slate-400 px-2 py-0.5 rounded text-[9px] font-bold">Standard</span>`;
+                    
+                const outstanding = c.outstanding ? `₹${c.outstanding}` : '₹0';
+                
+                html += `
+                    <tr class="hover:bg-slate-900/35 transition">
+                        <td class="py-4 px-6 font-bold text-white">${c.name}</td>
+                        <td class="py-4 px-6 font-mono text-slate-300">${c.phone}</td>
+                        <td class="py-4 px-6 text-slate-400 font-medium">${c.gender || 'Not specified'}</td>
+                        <td class="py-4 px-6">${categoryBadge}</td>
+                        <td class="py-4 px-6 text-rose-400 font-bold">${outstanding}</td>
+                        <td class="py-4 px-6">
+                            <button onclick="triggerQuickDirectMessage('${c.name}', '${c.phone}')" class="text-brand-primary hover:underline hover:text-green-400 flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-comment-sms"></i>
+                                <span>Message</span>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            table.innerHTML = html;
+        }
+
+        // Filter customer directory search
+        function handleClientDirSearch() {
+            const search = document.getElementById('dir-search').value.toLowerCase();
+            const filter = document.getElementById('dir-category-filter').value;
+            const table = document.getElementById('directory-table-body');
+            
+            const filtered = clientDatabase.filter(c => {
+                const matchSearch = (c.name && c.name.toLowerCase().includes(search)) || (c.phone && c.phone.includes(search));
+                let matchFilter = true;
+                
+                if (filter === 'vip') {
+                    matchFilter = c.category && c.category.toLowerCase().includes('vip');
+                } else if (filter === 'active') {
+                    // mockup filter
+                    matchFilter = true;
+                } else if (filter === 'male') {
+                    matchFilter = c.gender && c.gender.toLowerCase() === 'male';
+                } else if (filter === 'female') {
+                    matchFilter = c.gender && c.gender.toLowerCase() === 'female';
+                }
+                
+                return matchSearch && matchFilter;
+            });
+            
+            if (filtered.length === 0) {
+                table.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-500">No matching client entries found</td></tr>`;
+                return;
+            }
+            
+            let html = '';
+            filtered.forEach(c => {
+                const categoryBadge = c.category && c.category.toLowerCase().includes('vip') 
+                    ? `<span class="bg-blue-500/10 text-brand-neonBlue px-2.5 py-0.5 rounded border border-blue-500/20 font-black uppercase tracking-wider text-[9px]"><i class="fa-solid fa-gem mr-1"></i>VIP</span>`
+                    : `<span class="bg-slate-800 text-slate-400 px-2 py-0.5 rounded text-[9px] font-bold">Standard</span>`;
+                    
+                const outstanding = c.outstanding ? `₹${c.outstanding}` : '₹0';
+                
+                html += `
+                    <tr class="hover:bg-slate-900/35 transition">
+                        <td class="py-4 px-6 font-bold text-white">${c.name}</td>
+                        <td class="py-4 px-6 font-mono text-slate-300">${c.phone}</td>
+                        <td class="py-4 px-6 text-slate-400 font-medium">${c.gender || 'Not specified'}</td>
+                        <td class="py-4 px-6">${categoryBadge}</td>
+                        <td class="py-4 px-6 text-rose-400 font-bold">${outstanding}</td>
+                        <td class="py-4 px-6">
+                            <button onclick="triggerQuickDirectMessage('${c.name}', '${c.phone}')" class="text-brand-primary hover:underline hover:text-green-400 flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-comment-sms"></i>
+                                <span>Message</span>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            table.innerHTML = html;
+        }
+
+        function triggerQuickDirectMessage(name, phone) {
+            switchTab('new-campaign');
+            document.getElementById('audience-select').value = 'custom';
+            handleAudienceChange();
+            
+            // Find checkbox and check it, uncheck others
+            document.querySelectorAll('.client-checkbox').forEach(cb => {
+                cb.checked = cb.value === clientDatabase.find(c => c.phone === phone).id;
+            });
+            updateCustomSelectedCount();
+            
+            document.getElementById('campaign-name').value = `Direct Broadcast to ${name}`;
+            document.getElementById('campaign-message-textarea').focus();
+        }
+
+
+        // TAB 4: HISTORICAL LOGS TABLE RENDERING
+        function renderCampaignLogsTable() {
+            const table = document.getElementById('history-table-body');
+            if (campaignLogs.length === 0) {
+                table.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-500">No campaigns have been run yet</td></tr>`;
+                return;
+            }
+            
+            // Sort by descending date
+            const sorted = [...campaignLogs].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            let html = '';
+            sorted.forEach(c => {
+                const results = c.results || [];
+                const sent = results.filter(r => r.status === 'sent').length;
+                const failed = results.filter(r => r.status === 'failed').length;
+                const total = c.recipientsCount;
+                
+                const percent = total > 0 ? Math.round((sent / total) * 100) : 0;
+                
+                let statusBg = 'bg-blue-500/10 text-blue-400 border-blue-500/25';
+                if (c.status === 'completed') statusBg = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25';
+                if (c.status === 'failed') statusBg = 'bg-rose-500/10 text-rose-400 border-rose-500/25';
+                if (c.status === 'waiting_for_whatsapp') statusBg = 'bg-amber-500/10 text-amber-400 border-amber-500/25 animate-pulse';
+                
+                html += `
+                    <tr class="hover:bg-slate-900/35 transition">
+                        <td class="py-4 px-6">
+                            <h4 class="font-bold text-white text-sm">${c.name}</h4>
+                            <p class="text-[10px] text-slate-500 font-semibold truncate max-w-sm mt-0.5">${c.message}</p>
+                        </td>
+                        <td class="py-4 px-6 text-slate-400 font-medium">${new Date(c.timestamp).toLocaleString()}</td>
+                        <td class="py-4 px-6 font-mono text-slate-300">${sent}/${total} Sent</td>
+                        <td class="py-4 px-6">
+                            <span class="px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider border ${statusBg}">
+                                ${c.status.replace(/_/g, ' ')}
+                            </span>
+                        </td>
+                        <td class="py-4 px-6">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-slate-200">${percent}%</span>
+                                <div class="w-16 bg-slate-900 border border-slate-800 rounded-full h-2 overflow-hidden">
+                                    <div class="bg-gradient-to-r from-brand-neonBlue to-cyan-400 h-full rounded-full" style="width: ${percent}%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-4 px-6">
+                            <button onclick="openAuditModal('${c.id}')" class="bg-slate-850 hover:bg-slate-800 text-brand-neonBlue text-[11px] font-extrabold px-3.5 py-2 rounded-xl transition border border-brand-border/60 flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-list-check"></i>
+                                <span>Audit logs</span>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            table.innerHTML = html;
+        }
+
+        // AUDIT DRILLDOWN POPUP MODAL CONTROL
+        function openAuditModal(campaignId) {
+            const campaign = campaignLogs.find(c => c.id === campaignId);
+            if (!campaign) return;
+            
+            document.getElementById('audit-modal').classList.remove('hidden');
+            document.getElementById('audit-modal-subtitle').innerText = `Campaign: ${campaign.name} | Launched on ${new Date(campaign.timestamp).toLocaleString()}`;
+            
+            const results = campaign.results || [];
+            const sent = results.filter(r => r.status === 'sent').length;
+            const failed = results.filter(r => r.status === 'failed').length;
+            const total = campaign.recipientsCount;
+            
+            document.getElementById('audit-stat-success').innerText = sent;
+            document.getElementById('audit-stat-failed').innerText = failed;
+            document.getElementById('audit-stat-total').innerText = total;
+            
+            const tbody = document.getElementById('audit-table-body');
+            
+            if (results.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="py-8 text-center text-slate-500 italic">No delivery audit detail generated for campaign.</td></tr>`;
+                return;
+            }
+            
+            let html = '';
+            results.forEach(r => {
+                const statusBadge = r.status === 'sent' 
+                    ? `<span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-black border border-emerald-500/15 uppercase text-[8px]">Delivered</span>`
+                    : `<span class="bg-rose-500/10 text-rose-400 px-2 py-0.5 rounded font-black border border-rose-500/15 uppercase text-[8px]">Failed</span>`;
+                    
+                const errorLog = r.error ? `<span class="text-rose-400 font-semibold leading-normal">${r.error}</span>` : `<span class="text-slate-500 font-medium">Successful hand-off</span>`;
+                
+                html += `
+                    <tr class="hover:bg-slate-900/10 transition">
+                        <td class="py-3 px-4 font-bold text-slate-200">${r.name || 'Client'}</td>
+                        <td class="py-3 px-4 font-mono text-slate-400">${r.phone}</td>
+                        <td class="py-3 px-4">${statusBadge}</td>
+                        <td class="py-3 px-4 max-w-xs truncate" title="${r.error || ''}">${errorLog}</td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+
+        function closeAuditModal() {
+            document.getElementById('audit-modal').classList.add('hidden');
+        }
+
+        // Cross-window message receiver from parent dashboard AI Assistant
+        window.addEventListener('message', (event) => {
+            if (event.data && event.data.type === 'SET_CAMPAIGN_DATA') {
+                const nameInput = document.getElementById('campaign-name');
+                const messageInput = document.getElementById('campaign-message-textarea');
+                
+                if (nameInput) nameInput.value = event.data.name || '';
+                if (messageInput) messageInput.value = event.data.message || '';
+                
+                // Switch navigation tab to New Campaign composer page
+                switchTab('new-campaign');
+                updateLivePreview();
+            }
+        });
+    </script>
+</body>
+</html>
